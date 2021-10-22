@@ -16,6 +16,10 @@ class Post{
         $this->date = $data['date'];
     }
 
+    function getOne(){
+        return 1;
+    }
+
     static function addPost($data){
         global $mysql;
         $slug = self::getSlug($data['title']);
@@ -55,6 +59,8 @@ class Post{
 
 function handleRequest($method, $options = []){
     $post = new Post();
+    $post->getOne();
+
     $request = empty(file_get_contents("php://input")) ? "" : json_decode(file_get_contents("php://input"), true);
     if($method == "POST"){
         $data = $request['data'];
